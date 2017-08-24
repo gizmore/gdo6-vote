@@ -1,0 +1,6 @@
+md-list div.gdo-vote-selection  {
+	display: inline-block;
+	vertical-align: sub;
+	float: left;
+	margin-right: 4px;
+}
