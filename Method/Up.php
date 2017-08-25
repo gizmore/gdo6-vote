@@ -21,11 +21,11 @@ final class Up extends Method
 		
 		# Get VoteTable, e.g. LinkVote
 		$class= Common::getRequestString('gdo');
-		if (!class_exists($class, false))
+		if (!@class_exists($class))
 		{
 			return $this->error('err_vote_gdo');
 		}
-		if (!is_subclass_of($class, 'VoteTable'))
+		if (!is_subclass_of($class, 'GDO\Vote\VoteTable'))
 		{
 			return $this->error('err_vote_table');
 		}

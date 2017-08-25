@@ -35,7 +35,7 @@ final class GDO_VoteSelection extends GDO_Base
 			'rating' => $this->voteRating(),
 			'own_vote' => $this->gdo->getVar('own_vote'),
 			'count' => $this->voteCount(),
-			'voteurl' => href('Vote', 'Up', '&gdo='.$this->voteTable()->gdoClassName().'&id='.$this->gdo->getID()),
+			'voteurl' => href('Vote', 'Up', '&gdo='.urlencode($this->voteTable()->gdoClassName()).'&id='.$this->gdo->getID()),
 		);
 	}
 	

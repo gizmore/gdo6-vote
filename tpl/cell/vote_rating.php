@@ -10,8 +10,8 @@ $votesNeeded = $gdo->gdoVotesBeforeOutcome();
 $votesHave = $gdo->getVoteCount();
 if ($votesHave >= $votesNeeded)
 {
-    $value = sprintf('%.01f', $field->getGDOVar());
-    echo GDO_Badge::make()->value($field->getGDOVar())->render();
+    $value = sprintf('%.01f', $field->getVar());
+    echo GDO_Badge::make()->value($value)->render();
 }
 else 
 {

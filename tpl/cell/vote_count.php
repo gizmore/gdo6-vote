@@ -10,7 +10,7 @@ $votesNeeded = $gdo->gdoVotesBeforeOutcome();
 $votesHave = $gdo->getVoteCount();
 if ($votesHave >= $votesNeeded)
 {
-    echo GDO_Badge::make()->value($field->getGDOVar())->render();
+    echo GDO_Badge::make()->value($field->getVar())->render();
 }
 else 
 {
