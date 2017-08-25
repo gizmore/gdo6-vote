@@ -14,5 +14,5 @@ if ($votesHave >= $votesNeeded)
 }
 else 
 {
-	echo GDO_Tooltip::make()->tooltip('tt_gdo_votecount_open', [$votesHave, $votesNeeded]);
+	echo GDO_Tooltip::make()->tooltip(t('tt_gdo_votecount_open', [$votesHave, $votesNeeded]));
 }

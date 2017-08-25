@@ -29,14 +29,14 @@ final class GDO_VoteSelection extends GDO_Base
 		return $this->gdo->getVoteRating();
 	}
 	
-	public function initJSON()
+	public function toJSON()
 	{
-		return json_encode(array(
+		return array(
 			'rating' => $this->voteRating(),
 			'own_vote' => $this->gdo->getVar('own_vote'),
 			'count' => $this->voteCount(),
 			'voteurl' => href('Vote', 'Up', '&gdo='.$this->voteTable()->gdoClassName().'&id='.$this->gdo->getID()),
-		));
+		);
 	}
 	
 	public function renderCell()

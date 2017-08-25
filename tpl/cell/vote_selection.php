@@ -4,8 +4,8 @@ $field instanceof GDO_VoteSelection;
 ?>
 <div
  class="gdo-vote-selection"
- ng-controller="GWFVoteCtrl"
- ng-init='voteInit(<?= $field->initJSON(); ?>);'>
+ ng-controller="GDOVoteCtrl"
+ ng-init='voteInit(<?= $field->displayJSON(); ?>);'>
  <jk-rating-stars
  max-rating="5"
  rating="rating"
