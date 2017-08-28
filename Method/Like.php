@@ -21,7 +21,7 @@ final class Like extends Method
 		{
 			return $this->error('err_vote_gdo');
 		}
-		if (!is_subclass_of($class, 'GDO\Vote\LikeTable'))
+		if (!is_subclass_of($class, 'GDO\\Vote\\LikeTable'))
 		{
 			return $this->error('err_vote_table');
 		}
