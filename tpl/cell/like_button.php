@@ -1,8 +1,8 @@
 <?php
-use GDO\User\User;
+use GDO\User\GDO_User;
 use GDO\Vote\GDT_LikeButton;
 $field instanceof GDT_LikeButton;
-$user = User::current();
+$user = GDO_User::current();
 $gdo = $field->getLikeObject();
 $liked = $gdo->hasLiked($user);
 $likes = $gdo->getLikes();

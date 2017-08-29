@@ -5,28 +5,28 @@ use GDO\Core\Method;
 use GDO\DB\GDO;
 use GDO\Net\GDT_IP;
 use GDO\Template\Response;
-use GDO\User\User;
+use GDO\User\GDO_User;
 use GDO\Util\Common;
-use GDO\Vote\LikeTable;
+use GDO\Vote\GDO_LikeTable;
 
 final class Like extends Method
 {
 	public function execute()
 	{
-		$user = User::current();
+		$user = GDO_User::current();
 		
-		# Get LikeTable, e.g. GWF_ProfileLike
+		# Get LikeTable, e.g. GDO_CommentLike
 		$class = Common::getRequestString('gdo');
 		if (!class_exists($class, false))
 		{
 			return $this->error('err_vote_gdo');
 		}
-		if (!is_subclass_of($class, 'GDO\\Vote\\LikeTable'))
+		if (!is_subclass_of($class, 'GDO\\Vote\\GDO_LikeTable'))
 		{
 			return $this->error('err_vote_table');
 		}
 		$table = GDO::tableFor($class);
-		$table instanceof LikeTable;
+		$table instanceof GDO_LikeTable;
 		
 		# Get GDO table, e.g. Link
 		$objects = $table->gdoLikeObjectTable();
@@ -45,7 +45,7 @@ final class Like extends Method
 				'like_object' => $object->getID(),
 				'like_ip' => GDT_IP::current(),
 			));
-			$like instanceof LikeTable;
+			$like instanceof GDO_LikeTable;
 			$like->replace();
 			
 			# Update cache

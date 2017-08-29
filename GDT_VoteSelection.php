@@ -12,7 +12,7 @@ final class GDT_VoteSelection extends GDT_Base
 	}
 	
 	/**
-	 * @return VoteTable
+	 * @return GDO_VoteTable
 	 */
 	public function voteTable()
 	{

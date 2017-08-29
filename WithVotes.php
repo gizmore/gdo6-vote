@@ -1,19 +1,19 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\User\User;
+use GDO\User\GDO_User;
 
 trait WithVotes
 {
-	public function hasVoted(User $user)
+	public function hasVoted(GDO_User $user)
 	{
 		return !!$this->getVote($user);
 	}
 	
-	public function getVote(User $user)
+	public function getVote(GDO_User $user)
 	{
 		$votes = $this->gdoVoteTable();
-		$votes instanceof VoteTable;
+		$votes instanceof GDO_VoteTable;
 		return $votes->getVote($user, $this);
 	}
 	
@@ -49,7 +49,7 @@ trait WithVotes
 	public function queryVoteCount()
 	{
 		$votes = $this->gdoVoteTable();
-		$votes instanceof VoteTable;
+		$votes instanceof GDO_VoteTable;
 		return $votes->countWhere('vote_object='.$this->getID());
 	}
 	
@@ -68,7 +68,7 @@ trait WithVotes
 	public function queryVoteRating()
 	{
 		$votes = $this->gdoVoteTable();
-		$votes instanceof VoteTable;
+		$votes instanceof GDO_VoteTable;
 		return (int) $votes->select('AVG(vote_value)')->where('vote_object='.$this->getID())->exec()->fetchValue();
 	}
 	

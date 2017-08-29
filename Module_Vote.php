@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\GWF\Module_GWF;
 
-final class Module_Vote extends Module
+final class Module_Vote extends GDO_Module
 {
 	public $module_priority = 25;
 	

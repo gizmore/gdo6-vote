@@ -6,9 +6,9 @@ use GDO\DB\GDT_Object;
 use GDO\Net\GDT_IP;
 use GDO\Type\GDT_Int;
 use GDO\User\GDT_User;
-use GDO\User\User;
+use GDO\User\GDO_User;
 
-class VoteTable extends GDO
+class GDO_VoteTable extends GDO
 {
 	/**
 	 * @return GDO
@@ -43,11 +43,11 @@ class VoteTable extends GDO
 	### Factory ###
 	###############
 	/**
-	 * @param User $user
+	 * @param GDO_User $user
 	 * @param GDO $object
 	 * @return self
 	 */
-	public function getVote(User $user, GDO $object)
+	public function getVote(GDO_User $user, GDO $object)
 	{
 	    return self::getById($user->getID(), $object->getID());
 	}

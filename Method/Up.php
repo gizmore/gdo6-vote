@@ -5,9 +5,9 @@ use GDO\Core\Method;
 use GDO\DB\GDO;
 use GDO\Net\GDT_IP;
 use GDO\Template\Response;
-use GDO\User\User;
+use GDO\User\GDO_User;
 use GDO\Util\Common;
-use GDO\Vote\VoteTable;
+use GDO\Vote\GDO_VoteTable;
 /**
  * Vote on an item.
  * Check for IP duplicates.
@@ -17,7 +17,7 @@ final class Up extends Method
 {
 	public function execute()
 	{
-		$user = User::current();
+		$user = GDO_User::current();
 		
 		# Get VoteTable, e.g. LinkVote
 		$class= Common::getRequestString('gdo');
@@ -25,12 +25,12 @@ final class Up extends Method
 		{
 			return $this->error('err_vote_gdo');
 		}
-		if (!is_subclass_of($class, 'GDO\Vote\VoteTable'))
+		if (!is_subclass_of($class, 'GDO\Vote\GDO_VoteTable'))
 		{
 			return $this->error('err_vote_table');
 		}
 		$table = GDO::tableFor($class);
-		$table instanceof VoteTable;
+		$table instanceof GDO_VoteTable;
 		
 		# Get GDO table, e.g. Link
 		$objects = $table->gdoVoteObjectTable();
@@ -57,7 +57,7 @@ final class Up extends Method
 				'vote_ip' => GDT_IP::current(),
 				'vote_value' => $value,
 			));
-			$vote instanceof VoteTable;
+			$vote instanceof GDO_VoteTable;
 			$vote->replace();
 			
 			# Update cache

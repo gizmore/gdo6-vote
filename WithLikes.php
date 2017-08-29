@@ -1,19 +1,19 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\User\User;
+use GDO\User\GDO_User;
 
 trait WithLikes
 {
-	public function hasLiked(User $user)
+	public function hasLiked(GDO_User $user)
 	{
 		return !!$this->getLike($user);
 	}
 	
-	public function getLike(User $user)
+	public function getLike(GDO_User $user)
 	{
 		$likes = $this->gdoLikeTable();
-		$likes instanceof LikeTable;
+		$likes instanceof GDO_LikeTable;
 		return $likes->getLike($user, $this);
 	}
 	
@@ -45,7 +45,7 @@ trait WithLikes
 	public function queryLikeCount()
 	{
 		$likes = $this->gdoLikeTable();
-		$likes instanceof LikeTable;
+		$likes instanceof GDO_LikeTable;
 		return $likes->countWhere('like_object='.$this->getID());
 	}
 	

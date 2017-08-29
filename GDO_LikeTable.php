@@ -6,7 +6,7 @@ use GDO\DB\GDT_Object;
 use GDO\Net\GDT_IP;
 use GDO\User\GDT_User;
 
-class LikeTable extends GDO
+class GDO_LikeTable extends GDO
 {
 	/**
 	 * @return GDO
