@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDO_Template;
-use GDO\Type\GDO_Decimal;
+use GDO\Template\GDT_Template;
+use GDO\Type\GDT_Decimal;
 
-final class GDO_VoteRating extends GDO_Decimal
+final class GDT_VoteRating extends GDT_Decimal
 {
 	public $writable = false;
 	public $editable = false;
@@ -27,6 +27,6 @@ final class GDO_VoteRating extends GDO_Decimal
 	
 	public function renderCell()
 	{
-		return GDO_Template::php('Vote', 'cell/vote_rating.php', ['field'=>$this]);
+		return GDT_Template::php('Vote', 'cell/vote_rating.php', ['field'=>$this]);
 	}
 }

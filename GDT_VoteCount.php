@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDO_Template;
-use GDO\Type\GDO_Int;
+use GDO\Template\GDT_Template;
+use GDO\Type\GDT_Int;
 
-class GDO_VoteCount extends GDO_Int
+class GDT_VoteCount extends GDT_Int
 {
 	public $writable = false;
 	public $editable = false;
@@ -24,7 +24,7 @@ class GDO_VoteCount extends GDO_Int
 	
 	public function renderCell()
 	{
-		return GDO_Template::php('Vote', 'cell/vote_count.php', ['field'=>$this]);
+		return GDT_Template::php('Vote', 'cell/vote_count.php', ['field'=>$this]);
 	}
 	
 }

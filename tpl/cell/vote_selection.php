@@ -1,6 +1,6 @@
 <?php
-use GDO\Vote\GDO_VoteSelection;
-$field instanceof GDO_VoteSelection;
+use GDO\Vote\GDT_VoteSelection;
+$field instanceof GDT_VoteSelection;
 ?>
 <div
  class="gdo-vote-selection"

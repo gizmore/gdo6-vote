@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDO_Template;
-use GDO\UI\GDO_Button;
+use GDO\Template\GDT_Template;
+use GDO\UI\GDT_Button;
 
-class GDO_LikeButton extends GDO_Button
+class GDT_LikeButton extends GDT_Button
 {
 	public function defaultLabel() { return $this->label('votes'); }
 
@@ -15,6 +15,6 @@ class GDO_LikeButton extends GDO_Button
 	
 	public function renderCell()
 	{
-		return GDO_Template::php('Vote', 'cell/like_button.php', ['field'=>$this]);
+		return GDT_Template::php('Vote', 'cell/like_button.php', ['field'=>$this]);
 	}
 }

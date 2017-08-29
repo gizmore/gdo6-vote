@@ -22,7 +22,7 @@ trait WithLikes
 		$vars = [];
 		foreach ($this->gdoColumnsCache() as $gdoType)
 		{
-			if ($gdoType instanceof GDO_LikeCount)
+			if ($gdoType instanceof GDT_LikeCount)
 			{
 				$vars[$gdoType->name] = $this->queryLikeCount()();
 			}
@@ -34,7 +34,7 @@ trait WithLikes
 	{
 		foreach ($this->gdoColumnsCache() as $gdoType)
 		{
-			if ($gdoType instanceof GDO_LikeCount)
+			if ($gdoType instanceof GDT_LikeCount)
 			{
 				return $gdoType->getValue();
 			}

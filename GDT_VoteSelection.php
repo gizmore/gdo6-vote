@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDO_Template;
-use GDO\Type\GDO_Base;
+use GDO\Template\GDT_Template;
+use GDO\Type\GDT_Base;
 
-final class GDO_VoteSelection extends GDO_Base
+final class GDT_VoteSelection extends GDT_Base
 {
 	public function defaultLabel()
 	{
@@ -41,6 +41,6 @@ final class GDO_VoteSelection extends GDO_Base
 	
 	public function renderCell()
 	{
-		return GDO_Template::php('Vote', 'cell/vote_selection.php', ['field'=>$this]);
+		return GDT_Template::php('Vote', 'cell/vote_selection.php', ['field'=>$this]);
 	}
 }

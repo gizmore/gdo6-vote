@@ -1,9 +1,9 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDO_Template;
+use GDO\Template\GDT_Template;
 
-class GDO_LikeCount extends GDO_VoteCount
+class GDT_LikeCount extends GDT_VoteCount
 {
 	public $writable = false;
 	public $editable = false;
@@ -17,7 +17,7 @@ class GDO_LikeCount extends GDO_VoteCount
 	
 	public function renderCell()
 	{
-		return GDO_Template::php('Vote', 'cell/like_count.php', ['field'=>$this]);
+		return GDT_Template::php('Vote', 'cell/like_count.php', ['field'=>$this]);
 	}
 	
 }

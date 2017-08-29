@@ -22,11 +22,11 @@ trait WithVotes
 		$vars = [];
 		foreach ($this->gdoColumnsCache() as $gdoType)
 		{
-			if ($gdoType instanceof GDO_VoteCount)
+			if ($gdoType instanceof GDT_VoteCount)
 			{
 				$vars[$gdoType->name] = $this->queryVoteCount();
 			}
-			elseif ($gdoType instanceof GDO_VoteRating)
+			elseif ($gdoType instanceof GDT_VoteRating)
 			{
 				$vars[$gdoType->name] = $this->queryVoteRating();
 			}
@@ -38,7 +38,7 @@ trait WithVotes
 	{
 		foreach ($this->gdoColumnsCache() as $gdoType)
 		{
-			if ($gdoType instanceof GDO_VoteCount)
+			if ($gdoType instanceof GDT_VoteCount)
 			{
 				return $gdoType->getValue();
 			}
@@ -57,7 +57,7 @@ trait WithVotes
 	{
 		foreach ($this->gdoColumnsCache() as $gdoType)
 		{
-			if ($gdoType instanceof GDO_VoteRating)
+			if ($gdoType instanceof GDT_VoteRating)
 			{
 				return $gdoType->getValue();
 			}

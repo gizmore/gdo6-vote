@@ -2,10 +2,10 @@
 namespace GDO\Vote;
 
 use GDO\DB\GDO;
-use GDO\DB\GDO_Object;
-use GDO\Net\GDO_IP;
-use GDO\Type\GDO_Int;
-use GDO\User\GDO_User;
+use GDO\DB\GDT_Object;
+use GDO\Net\GDT_IP;
+use GDO\Type\GDT_Int;
+use GDO\User\GDT_User;
 use GDO\User\User;
 
 class VoteTable extends GDO
@@ -20,10 +20,10 @@ class VoteTable extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_User::make('vote_user')->primary(),
-			GDO_Object::make('vote_object')->table($this->gdoVoteObjectTable())->primary(),
-			GDO_IP::make('vote_ip')->notNull(),
-			GDO_Int::make('vote_value')->notNull()->unsigned()->bytes(1),
+			GDT_User::make('vote_user')->primary(),
+			GDT_Object::make('vote_object')->table($this->gdoVoteObjectTable())->primary(),
+			GDT_IP::make('vote_ip')->notNull(),
+			GDT_Int::make('vote_value')->notNull()->unsigned()->bytes(1),
 		);
 	}
 	/**

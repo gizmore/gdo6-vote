@@ -3,7 +3,7 @@ namespace GDO\Vote\Method;
 
 use GDO\Core\Method;
 use GDO\DB\GDO;
-use GDO\Net\GDO_IP;
+use GDO\Net\GDT_IP;
 use GDO\Template\Response;
 use GDO\User\User;
 use GDO\Util\Common;
@@ -46,7 +46,7 @@ final class Up extends Method
 			return $this->error('err_rate_param_between', [1, $object->gdoVoteMax()]);
 		}
 		
-		$count = $table->countWhere(sprintf("vote_object=%s AND vote_ip='%s' AND vote_user!=%s", $object->getID(), GDO_IP::current(), $user->getID()));
+		$count = $table->countWhere(sprintf("vote_object=%s AND vote_ip='%s' AND vote_user!=%s", $object->getID(), GDT_IP::current(), $user->getID()));
 		
 		if ($count === 0)
 		{
@@ -54,7 +54,7 @@ final class Up extends Method
 			$vote = $class::blank(array(
 				'vote_user' => $user->getID(),
 				'vote_object' => $object->getID(),
-				'vote_ip' => GDO_IP::current(),
+				'vote_ip' => GDT_IP::current(),
 				'vote_value' => $value,
 			));
 			$vote instanceof VoteTable;

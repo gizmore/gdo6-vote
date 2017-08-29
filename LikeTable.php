@@ -2,9 +2,9 @@
 namespace GDO\Vote;
 
 use GDO\DB\GDO;
-use GDO\DB\GDO_Object;
-use GDO\Net\GDO_IP;
-use GDO\User\GDO_User;
+use GDO\DB\GDT_Object;
+use GDO\Net\GDT_IP;
+use GDO\User\GDT_User;
 
 class LikeTable extends GDO
 {
@@ -18,9 +18,9 @@ class LikeTable extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_User::make('like_user')->primary(),
-			GDO_Object::make('like_object')->table($this->gdoLikeObjectTable())->primary(),
-			GDO_IP::make('like_ip')->notNull(),
+			GDT_User::make('like_user')->primary(),
+			GDT_Object::make('like_object')->table($this->gdoLikeObjectTable())->primary(),
+			GDT_IP::make('like_ip')->notNull(),
 		);
 	}
 	
