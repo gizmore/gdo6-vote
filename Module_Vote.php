@@ -13,7 +13,10 @@ final class Module_Vote extends GDO_Module
 	public function onIncludeScripts()
 	{
 		$min = Module_GWF::instance()->cfgMinifyJS() !== 'no' ? '.min' : '';
-		$this->addJavascript('js/gwf-vote-ctrl.js');
+		if (module_enabled('GWFAngular'))
+		{
+		    $this->addJavascript('js/gwf-vote-ctrl.js');
+		}
 		$this->addCSS('css/gwf-votes.css');
 	}
 }
