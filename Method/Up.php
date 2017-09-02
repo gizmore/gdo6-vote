@@ -8,6 +8,9 @@ use GDO\Template\Response;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Vote\GDO_VoteTable;
+use GDO\Vote\GDT_VoteCount;
+use GDO\Vote\GDT_VoteRating;
+use function React\Promise\race;
 /**
  * Vote on an item.
  * Check for IP duplicates.
@@ -63,13 +66,17 @@ final class Up extends Method
 			# Update cache
 			$object->setVar('own_vote', $value);
 			$object->updateVotes();
-
+			$countColumn = $object->getVoteCountColumn();
+			$rateColumn = $object->getVoteRatingColumn();
 			return Response::make(array(
-				'object' => $object->toJSON(),
-				'message' => t('msg_voted'), 
+// 				'object' => $object->toJSON(),
+				'message' => t('msg_voted'),
+			    'countClass' => $countColumn->name. '-vote-count-'.$object->getID(),
+			    'ratingClass' => $rateColumn->name. '-vote-rating-'.$object->getID(),
+			    'count' => $countColumn->renderCell(),
+			    'rating' => $rateColumn->renderCell(),
 			));
 		}
-		
 		return $this->error('err_vote_ip');
 	}
 	

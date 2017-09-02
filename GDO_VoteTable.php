@@ -27,7 +27,7 @@ class GDO_VoteTable extends GDO
 		);
 	}
 	/**
-	 * @return User
+	 * @return GDO_User
 	 */
 	public function getUser() { return $this->getValue('vote_user'); }
 	public function getUserID() { return $this->getVar('vote_user'); }
