@@ -31,6 +31,7 @@ final class GDT_VoteSelection extends GDT_Base
 	
 	public function toJSON()
 	{
+// 	    var_dump($this->gdo);
 		return array(
 			'rating' => $this->voteRating(),
 			'own_vote' => $this->gdo->getVar('own_vote'),
