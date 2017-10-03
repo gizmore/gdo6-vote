@@ -17,6 +17,7 @@ class GDO_VoteTable extends GDO
 	 */
 	public function gdoVoteObjectTable() {}
 	public function gdoVoteMax() { return 5; }
+	public function gdoVotesBeforeOutcome() { return 3; }
 	public function gdoCached() { return false; }
 	public function gdoAbstract() { return $this->gdoVoteObjectTable() === null; }
 	public function gdoColumns()

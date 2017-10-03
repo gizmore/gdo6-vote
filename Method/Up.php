@@ -11,6 +11,8 @@ use GDO\Vote\GDO_VoteTable;
 use GDO\Vote\GDT_VoteCount;
 use GDO\Vote\GDT_VoteRating;
 use function React\Promise\race;
+use GDO\Core\Application;
+use GDO\Core\Website;
 /**
  * Vote on an item.
  * Check for IP duplicates.
@@ -46,7 +48,7 @@ final class Up extends Method
 		if ( (!($value = Common::getRequestInt('rate'))) ||
 			 (($value < 1) || ($value > $table->gdoVoteMax())) )
 		{
-			return $this->error('err_rate_param_between', [1, $object->gdoVoteMax()]);
+		    return $this->error('err_rate_param_between', [1, $table->gdoVoteMax()]);
 		}
 		
 		$count = $table->countWhere(sprintf("vote_object=%s AND vote_ip='%s' AND vote_user!=%s", $object->getID(), GDT_IP::current(), $user->getID()));
@@ -68,14 +70,19 @@ final class Up extends Method
 			$object->updateVotes();
 			$countColumn = $object->getVoteCountColumn();
 			$rateColumn = $object->getVoteRatingColumn();
-			return Response::make(array(
-// 				'object' => $object->toJSON(),
-				'message' => t('msg_voted'),
-			    'countClass' => $countColumn->name. '-vote-count-'.$object->getID(),
-			    'ratingClass' => $rateColumn->name. '-vote-rating-'.$object->getID(),
-			    'count' => $countColumn->renderCell(),
-			    'rating' => $rateColumn->renderCell(),
-			));
+			
+			if (Application::instance()->isAjax())
+			{
+    			return Response::make(array(
+    // 				'object' => $object->toJSON(),
+    				'message' => t('msg_voted'),
+    			    'countClass' => $countColumn->name. '-vote-count-'.$object->getID(),
+    			    'ratingClass' => $rateColumn->name. '-vote-rating-'.$object->getID(),
+    			    'count' => $countColumn->renderCell(),
+    			    'rating' => $rateColumn->renderCell(),
+    			));
+			}
+			return Website::redirect('/');
 		}
 		return $this->error('err_vote_ip');
 	}

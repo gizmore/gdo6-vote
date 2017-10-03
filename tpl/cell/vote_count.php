@@ -7,7 +7,7 @@ $gdo = $field->getVoteObject();
 ?>
 <span class="<?=$field->name;?>-vote-count-<?= $gdo->getID(); ?>">
 <?php
-$votesNeeded = $gdo->gdoVotesBeforeOutcome();
+$votesNeeded = $gdo->gdoVoteTable()->gdoVotesBeforeOutcome();
 $votesHave = $gdo->getVoteCount();
 if ($votesHave >= $votesNeeded)
 {

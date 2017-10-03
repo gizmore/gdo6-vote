@@ -29,13 +29,28 @@ final class GDT_VoteSelection extends GDT_Base
 		return $this->gdo->getVoteRating();
 	}
 	
+	public function ownVote()
+	{
+	    return $this->gdo->getVar('own_vote');
+	}
+	
+	public function hrefVoteScore($score)
+	{
+	    return $this->hrefVote() . "&rate=$score";
+	}
+	
+	public function hrefVote()
+	{
+	    return href('Vote', 'Up', '&gdo='.urlencode($this->voteTable()->gdoClassName()).'&id='.$this->gdo->getID());
+	}
+
 	public function toJSON()
 	{
 		return array(
 			'rating' => $this->voteRating(),
-			'own_vote' => $this->gdo->getVar('own_vote'),
+			'own_vote' => $this->ownVote(),
 			'count' => $this->voteCount(),
-			'voteurl' => href('Vote', 'Up', '&gdo='.urlencode($this->voteTable()->gdoClassName()).'&id='.$this->gdo->getID()),
+			'voteurl' => $this->hrefVote(),
 		);
 	}
 	
