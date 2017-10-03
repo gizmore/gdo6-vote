@@ -1,13 +1,15 @@
 <?php
 namespace GDO\Vote;
-
 use GDO\DB\GDO;
 use GDO\DB\GDT_Object;
 use GDO\Net\GDT_IP;
 use GDO\Type\GDT_Int;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;
-
+/**
+ * Override gdoVoteObjectTable with, e.g. return SomeGDO::table();
+ * @author gizmore
+ */
 class GDO_VoteTable extends GDO
 {
 	/**

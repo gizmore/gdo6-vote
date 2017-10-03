@@ -3,8 +3,20 @@ namespace GDO\Vote;
 
 use GDO\User\GDO_User;
 
+/**
+ * To make a GDO votable do
+ * 1. Create a table extend GDO_VoteTable
+ * 2. Implement gdoVoteTable()
+ * 
+ * @author gizmore
+ * @see GDO_VoteTable
+ */
 trait WithVotes
 {
+//     public function gdoVoteTable()
+//     {
+//     }
+    
 	public function hasVoted(GDO_User $user)
 	{
 		return !!$this->getVote($user);
