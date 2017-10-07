@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Vote;
 use GDO\UI\GDT_IconButton;
-use GDO\Template\GDT_Template;
+use GDO\Core\GDT_Template;
 /**
  * Show a trophy with level badge.
  * A tooltip explains if your access is granted or restricted.
@@ -10,7 +10,7 @@ use GDO\Template\GDT_Template;
 final class GDT_VotePopup extends GDT_IconButton
 {
     public $level = 0;
-    public function level(int $level)
+    public function level($level)
     {
         $this->level = $level;
         return $this;

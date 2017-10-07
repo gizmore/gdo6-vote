@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDT_Template;
+use GDO\Core\GDT_Template;
 
 class GDT_LikeCount extends GDT_VoteCount
 {

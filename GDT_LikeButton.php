@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDT_Template;
+use GDO\Core\GDT_Template;
 use GDO\UI\GDT_Button;
 
 class GDT_LikeButton extends GDT_Button

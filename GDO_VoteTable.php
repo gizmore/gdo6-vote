@@ -3,7 +3,7 @@ namespace GDO\Vote;
 use GDO\Core\GDO;
 use GDO\DB\GDT_Object;
 use GDO\Net\GDT_IP;
-use GDO\Type\GDT_Int;
+use GDO\DB\GDT_Int;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;
 /**

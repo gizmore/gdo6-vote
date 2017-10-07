@@ -4,7 +4,7 @@ namespace GDO\Vote\Method;
 use GDO\Core\Method;
 use GDO\Core\GDO;
 use GDO\Net\GDT_IP;
-use GDO\Template\Response;
+use GDO\Core\GDT_Response;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Vote\GDO_LikeTable;
@@ -51,7 +51,7 @@ final class Like extends Method
 			# Update cache
 			$object->updateLikes();
 
-			return Response::make(array(
+			return GDT_Response::make(array(
 				'object' => $object->toJSON(),
 				'message' => t('msg_liked'), 
 			));

@@ -1,8 +1,8 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDT_Template;
-use GDO\Type\GDT_Int;
+use GDO\Core\GDT_Template;
+use GDO\DB\GDT_Int;
 
 class GDT_VoteCount extends GDT_Int
 {

@@ -4,12 +4,10 @@ namespace GDO\Vote\Method;
 use GDO\Core\Method;
 use GDO\Core\GDO;
 use GDO\Net\GDT_IP;
-use GDO\Template\Response;
+use GDO\Core\GDT_Response;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Vote\GDO_VoteTable;
-use GDO\Vote\GDT_VoteCount;
-use GDO\Vote\GDT_VoteRating;
 use function React\Promise\race;
 use GDO\Core\Application;
 use GDO\Core\Website;
@@ -73,7 +71,7 @@ final class Up extends Method
 			
 			if (Application::instance()->isAjax())
 			{
-    			return Response::make(array(
+    			return GDT_Response::make(array(
     // 				'object' => $object->toJSON(),
     				'message' => t('msg_voted'),
     			    'countClass' => $countColumn->name. '-vote-count-'.$object->getID(),

@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDT_Template;
-use GDO\Type\GDT_Base;
+use GDO\Core\GDT_Template;
+use GDO\Core\GDT;
 
-final class GDT_VoteSelection extends GDT_Base
+final class GDT_VoteSelection extends GDT
 {
 	public function defaultLabel()
 	{

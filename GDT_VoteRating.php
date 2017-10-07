@@ -1,8 +1,8 @@
 <?php
 namespace GDO\Vote;
 
-use GDO\Template\GDT_Template;
-use GDO\Type\GDT_Decimal;
+use GDO\Core\GDT_Template;
+use GDO\DB\GDT_Decimal;
 
 final class GDT_VoteRating extends GDT_Decimal
 {
