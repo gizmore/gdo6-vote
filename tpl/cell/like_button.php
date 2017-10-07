@@ -1,14 +1,8 @@
-<?php
+<?php /** @var $field \GDO\Vote\GDT_LikeButton **/
 use GDO\User\GDO_User;
-use GDO\Vote\GDT_LikeButton;
-$field instanceof GDT_LikeButton;
+use GDO\UI\GDT_IconButton;
 $user = GDO_User::current();
 $gdo = $field->getLikeObject();
 $liked = $gdo->hasLiked($user);
 $likes = $gdo->getLikes();
-$field->icon('plus_one');
-?>
-<a
- class="md-button primary"
- ng-disabled="<?= $liked ? 'true' : 'false'; ?>"
- href="<?= $field->href; ?>"><?= $likes; ?></a>
+echo GDT_IconButton::make()->icon('plus_one')->href($field->href)->disabled($field->disabled)->rawLabel($likes)->render();
