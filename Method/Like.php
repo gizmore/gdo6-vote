@@ -2,7 +2,7 @@
 namespace GDO\Vote\Method;
 
 use GDO\Core\Method;
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\Net\GDT_IP;
 use GDO\Template\Response;
 use GDO\User\GDO_User;
