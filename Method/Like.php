@@ -51,7 +51,7 @@ final class Like extends Method
 			# Update cache
 			$object->updateLikes();
 
-			return GDT_Response::make(array(
+			return GDT_Response::makeWith(array(
 				'object' => $object->toJSON(),
 				'message' => t('msg_liked'), 
 			));

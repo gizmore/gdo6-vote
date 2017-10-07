@@ -44,7 +44,7 @@ final class GDT_VoteSelection extends GDT
 	    return href('Vote', 'Up', '&gdo='.urlencode($this->voteTable()->gdoClassName()).'&id='.$this->gdo->getID());
 	}
 
-	public function toJSON()
+	public function renderJSON()
 	{
 		return array(
 			'rating' => $this->voteRating(),

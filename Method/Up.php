@@ -72,7 +72,7 @@ final class Up extends Method
 			if (Application::instance()->isAjax())
 			{
     			return GDT_Response::make(array(
-    // 				'object' => $object->toJSON(),
+//     				'object' => $object->toJSON(),
     				'message' => t('msg_voted'),
     			    'countClass' => $countColumn->name. '-vote-count-'.$object->getID(),
     			    'ratingClass' => $rateColumn->name. '-vote-rating-'.$object->getID(),
