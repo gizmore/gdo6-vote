@@ -8,7 +8,12 @@ use GDO\Core\GDT_Response;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Vote\GDO_LikeTable;
+use GDO\Vote\GDT_LikeButton;
 
+/**
+ * The method to like an item.
+ * @author gizmore
+ */
 final class Like extends Method
 {
 	public function execute()
@@ -17,7 +22,7 @@ final class Like extends Method
 		
 		# Get LikeTable, e.g. GDO_CommentLike
 		$class = Common::getRequestString('gdo');
-		if (!class_exists($class, false))
+		if (!class_exists($class))
 		{
 			return $this->error('err_vote_gdo');
 		}
@@ -51,10 +56,9 @@ final class Like extends Method
 			# Update cache
 			$object->updateLikes();
 
-			return GDT_Response::makeWith(array(
-				'object' => $object->toJSON(),
-				'message' => t('msg_liked'), 
-			));
+			return GDT_Response::makeWith(
+				GDT_LikeButton::make('likes')->gdo($object)
+			);
 		}
 		
 		return $this->error('err_vote_ip');

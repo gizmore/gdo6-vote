@@ -36,7 +36,7 @@ trait WithLikes
 		{
 			if ($gdoType instanceof GDT_LikeCount)
 			{
-				return $gdoType->getValue();
+				return $this->getVar($gdoType->name);
 			}
 		}
 		return $this->queryLikeCount();

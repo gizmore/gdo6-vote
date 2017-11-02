@@ -3,8 +3,9 @@ namespace GDO\Vote;
 
 use GDO\Core\GDT_Template;
 use GDO\DB\GDT_Int;
+use GDO\DB\GDT_UInt;
 
-class GDT_VoteCount extends GDT_Int
+class GDT_VoteCount extends GDT_UInt
 {
 	public $writable = false;
 	public $editable = false;
@@ -13,7 +14,6 @@ class GDT_VoteCount extends GDT_Int
 
 	public function __construct()
 	{
-		$this->unsigned = true;
 		$this->initial = "0";
 	}
 	

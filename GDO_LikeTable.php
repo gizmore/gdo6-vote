@@ -5,6 +5,7 @@ use GDO\Core\GDO;
 use GDO\DB\GDT_Object;
 use GDO\Net\GDT_IP;
 use GDO\User\GDT_User;
+use GDO\User\GDO_User;
 
 class GDO_LikeTable extends GDO
 {
@@ -22,6 +23,11 @@ class GDO_LikeTable extends GDO
 			GDT_Object::make('like_object')->table($this->gdoLikeObjectTable())->primary(),
 			GDT_IP::make('like_ip')->notNull(),
 		);
+	}
+	
+	public function getLike(GDO_User $user, GDO $likeObject)
+	{
+		return self::table()->select()->where("like_user={$user->getID()} AND like_object={$likeObject->getID()}")->first()->exec()->fetchObject();
 	}
 	
 }
