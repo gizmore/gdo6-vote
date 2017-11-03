@@ -9,5 +9,5 @@ return array(
 'votepopup_votes' => 'Votes: %s',
 'votepopup_rating' => 'Rating: %s',
 ####
-'btn_likes' => '%s Likes',
+'btn_likes' => 'Likes',
 );
