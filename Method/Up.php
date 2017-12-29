@@ -74,10 +74,10 @@ final class Up extends Method
     			return GDT_Response::make(array(
 //     				'object' => $object->toJSON(),
     				'message' => t('msg_voted'),
-    			    'countClass' => $countColumn->name. '-vote-count-'.$object->getID(),
-    			    'ratingClass' => $rateColumn->name. '-vote-rating-'.$object->getID(),
-    			    'count' => $countColumn->renderCell(),
-    			    'rating' => $rateColumn->renderCell(),
+    				'countClass' => $countColumn ? $countColumn->name. '-vote-count-'.$object->getID() : '',
+    				'ratingClass' => $rateColumn ? $rateColumn->name. '-vote-rating-'.$object->getID() : '',
+    			    'count' => $object->getVoteCount(),
+    			    'rating' => $object->getVoteRating(),
     			));
 			}
 			return Website::redirect('/');
