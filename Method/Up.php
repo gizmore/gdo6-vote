@@ -80,7 +80,7 @@ final class Up extends Method
     			    'rating' => $object->getVoteRating(),
     			));
 			}
-			return Website::redirect('/');
+			return Website::redirectBack();
 		}
 		return $this->error('err_vote_ip');
 	}
