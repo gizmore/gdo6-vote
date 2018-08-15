@@ -8,7 +8,7 @@ $votesNeeded = $gdo->gdoVoteTable()->gdoVotesBeforeOutcome();
 $votesHave = $gdo->getVoteCount();
 if ($votesHave >= $votesNeeded)
 {
-    echo GDT_Badge::make()->value($field->getVar())->render();
+	echo GDT_Badge::make()->value($field->getVar())->render();
 }
 else 
 {

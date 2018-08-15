@@ -16,7 +16,7 @@ final class Module_Vote extends GDO_Module
 		$min = Module_Core::instance()->cfgMinifyJS() !== 'no' ? '.min' : '';
 		if (module_enabled('Angular'))
 		{
-		    $this->addJavascript('js/gwf-vote-ctrl.js');
+			$this->addJavascript('js/gwf-vote-ctrl.js');
 		}
 		if (module_enabled('JQuery'))
 		{

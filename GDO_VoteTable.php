@@ -52,7 +52,7 @@ class GDO_VoteTable extends GDO
 	 */
 	public function getVote(GDO_User $user, GDO $object)
 	{
-	    return self::getById($user->getID(), $object->getID());
+		return self::getById($user->getID(), $object->getID());
 	}
 	
 }

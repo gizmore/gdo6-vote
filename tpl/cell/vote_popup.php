@@ -18,13 +18,13 @@ echo $voteButton;
 <!-- Dialog Rate -->
 <div style="visibility: hidden;">
   <div class="md-dialog-container" id="<?= $id; ?>">
-    <md-dialog layout-padding>
-      <h2><?= t('dlg_votepopup_title'); ?></h2>
-      <p>
-        <?= t('votepopup_rating', [$rating]); ?><br/>
-        <?= t('votepopup_votes', [$votes]); ?><br/>
-        <?= GDT_VoteSelection::make()->gdo($gdo)->renderCell(); ?>
-      </p>
-    </md-dialog>
+	<md-dialog layout-padding>
+	  <h2><?= t('dlg_votepopup_title'); ?></h2>
+	  <p>
+		<?= t('votepopup_rating', [$rating]); ?><br/>
+		<?= t('votepopup_votes', [$votes]); ?><br/>
+		<?= GDT_VoteSelection::make()->gdo($gdo)->renderCell(); ?>
+	  </p>
+	</md-dialog>
   </div>
 </div>

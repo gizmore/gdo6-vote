@@ -9,15 +9,15 @@ use GDO\Core\GDT_Template;
  */
 final class GDT_VotePopup extends GDT_IconButton
 {
-    public $level = 0;
-    public function level($level)
-    {
-        $this->level = $level;
-        return $this;
-    }
-    
-    public function renderCell()
-    {
-        return GDT_Template::php('Vote', 'cell/vote_popup.php', ['field'=>$this]);
-    }
+	public $level = 0;
+	public function level($level)
+	{
+		$this->level = $level;
+		return $this;
+	}
+	
+	public function renderCell()
+	{
+		return GDT_Template::php('Vote', 'cell/vote_popup.php', ['field'=>$this]);
+	}
 }

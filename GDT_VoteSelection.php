@@ -31,17 +31,17 @@ final class GDT_VoteSelection extends GDT
 	
 	public function ownVote()
 	{
-	    return $this->gdo->getVar('own_vote');
+		return $this->gdo->getVar('own_vote');
 	}
 	
 	public function hrefVoteScore($score)
 	{
-	    return $this->hrefVote() . "&rate=$score";
+		return $this->hrefVote() . "&rate=$score";
 	}
 	
 	public function hrefVote()
 	{
-	    return href('Vote', 'Up', '&gdo='.urlencode($this->voteTable()->gdoClassName()).'&id='.$this->gdo->getID());
+		return href('Vote', 'Up', '&gdo='.urlencode($this->voteTable()->gdoClassName()).'&id='.$this->gdo->getID());
 	}
 
 	public function renderJSON()

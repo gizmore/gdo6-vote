@@ -46,7 +46,7 @@ final class Up extends Method
 		if ( (!($value = Common::getRequestInt('rate'))) ||
 			 (($value < 1) || ($value > $table->gdoVoteMax())) )
 		{
-		    return $this->error('err_rate_param_between', [1, $table->gdoVoteMax()]);
+			return $this->error('err_rate_param_between', [1, $table->gdoVoteMax()]);
 		}
 		
 		$count = $table->countWhere(sprintf("vote_object=%s AND vote_ip='%s' AND vote_user!=%s", $object->getID(), GDT_IP::current(), $user->getID()));
@@ -71,14 +71,14 @@ final class Up extends Method
 			
 			if (Application::instance()->isAjax())
 			{
-    			return GDT_Response::make(array(
-//     				'object' => $object->toJSON(),
-    				'message' => t('msg_voted'),
-    				'countClass' => $countColumn ? $countColumn->name. '-vote-count-'.$object->getID() : '',
-    				'ratingClass' => $rateColumn ? $rateColumn->name. '-vote-rating-'.$object->getID() : '',
-    			    'count' => $object->getVoteCount(),
-    			    'rating' => $object->getVoteRating(),
-    			));
+				return GDT_Response::make(array(
+//	 				'object' => $object->toJSON(),
+					'message' => t('msg_voted'),
+					'countClass' => $countColumn ? $countColumn->name. '-vote-count-'.$object->getID() : '',
+					'ratingClass' => $rateColumn ? $rateColumn->name. '-vote-rating-'.$object->getID() : '',
+					'count' => $object->getVoteCount(),
+					'rating' => $object->getVoteRating(),
+				));
 			}
 			return Website::redirectBack();
 		}

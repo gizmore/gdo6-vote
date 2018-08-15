@@ -13,10 +13,10 @@ use GDO\User\GDO_User;
  */
 trait WithVotes
 {
-//     public function gdoVoteTable()
-//     {
-//     }
-    
+//	 public function gdoVoteTable()
+//	 {
+//	 }
+	
 	public function hasVoted(GDO_User $user)
 	{
 		return !!$this->getVote($user);
@@ -48,11 +48,11 @@ trait WithVotes
 
 	public function getVoteCount()
 	{
-	    if ($column = $this->getVoteCountColumn())
-	    {
-	        return $column->getValue();
-	    }
-	    return $this->queryVoteCount();
+		if ($column = $this->getVoteCountColumn())
+		{
+			return $column->getValue();
+		}
+		return $this->queryVoteCount();
 	}
 	
 	/**
@@ -78,10 +78,10 @@ trait WithVotes
 	
 	public function getVoteRating()
 	{
-	    if ($column = $this->getVoteRatingColumn())
-	    {
-	        return $column->getValue();
-	    }
+		if ($column = $this->getVoteRatingColumn())
+		{
+			return $column->getValue();
+		}
 		return $this->queryVoteRating();
 	}
 	
@@ -90,13 +90,13 @@ trait WithVotes
 	 */
 	public function getVoteRatingColumn()
 	{
-	    foreach ($this->gdoColumnsCache() as $gdoType)
-	    {
-	        if ($gdoType instanceof GDT_VoteRating)
-	        {
-	            return $gdoType->gdo($this);
-	        }
-	    }
+		foreach ($this->gdoColumnsCache() as $gdoType)
+		{
+			if ($gdoType instanceof GDT_VoteRating)
+			{
+				return $gdoType->gdo($this);
+			}
+		}
 	}
 	
 	public function queryVoteRating()
