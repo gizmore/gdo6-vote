@@ -13,6 +13,7 @@ class GDO_LikeTable extends GDO
 	 * @return GDO
 	 */
 	public function gdoLikeObjectTable() {}
+	public function gdoLikeForGuests() { return true; }
 	
 	public function gdoCached() { return false; }
 	public function gdoAbstract() { return $this->gdoLikeObjectTable() === null; }

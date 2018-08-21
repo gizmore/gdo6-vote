@@ -33,9 +33,13 @@ final class Like extends Method
 		$table = GDO::tableFor($class);
 		$table instanceof GDO_LikeTable;
 		
+		if ( (!$user->isMember()) && (!$table->gdoLikeForGuests()) )
+		{
+			return $this->error('err_members_only');
+		}
+		
 		# Get GDO table, e.g. Link
 		$objects = $table->gdoLikeObjectTable();
-		$objects instanceof GDO;
 		
 		# Get GDO row, e.g. Link
 		$object = $objects->find(Common::getRequestString('id'));

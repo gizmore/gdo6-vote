@@ -2,7 +2,6 @@
 namespace GDO\Vote;
 
 use GDO\Core\GDO_Module;
-use GDO\Core\Module_Core;
 use GDO\DB\GDT_UInt;
 
 final class Module_Vote extends GDO_Module
@@ -13,7 +12,6 @@ final class Module_Vote extends GDO_Module
 	
 	public function onIncludeScripts()
 	{
-		$min = Module_Core::instance()->cfgMinifyJS() !== 'no' ? '.min' : '';
 		if (module_enabled('Angular'))
 		{
 			$this->addJavascript('js/gwf-vote-ctrl.js');
@@ -22,7 +20,6 @@ final class Module_Vote extends GDO_Module
 		{
 			$this->addJavascript('js/gdo-vote.js');
 		}
-			
 		$this->addCSS('css/gwf-votes.css');
 	}
 	
