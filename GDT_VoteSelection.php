@@ -3,9 +3,12 @@ namespace GDO\Vote;
 
 use GDO\Core\GDT_Template;
 use GDO\Core\GDT;
+use GDO\UI\WithLabel;
 
 final class GDT_VoteSelection extends GDT
 {
+	use WithLabel;
+
 	public function defaultLabel()
 	{
 		return $this->label('vote');
