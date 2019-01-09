@@ -56,7 +56,7 @@ final class Like extends Method
 		$count = $table->countWhere(sprintf("like_object=%s AND like_user='%s'", $object->getID(), $user->getID()));
 		if ($count >= $table->gdoMaxLikeCount())
 		{
-			return $this->error('err_vote_count');
+			return $this->error('err_vote_count', [$table->gdoMaxLikeCount()]);
 		}
 		
 		# Check last vote date against cooldown
