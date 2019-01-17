@@ -60,7 +60,12 @@ final class Like extends Method
 		}
 		
 		# Check last vote date against cooldown
-		$lastVoteDate = $table->select('like_created')->where(sprintf("like_object=%s AND (like_user=%s or like_ip='%s')", $object->getID(), $user->getID(), GDT_IP::current()))->exec()->fetchValue();
+		$lastVoteDate = $table->select('like_created')->
+			where(sprintf("like_object=%s", $object->getID()))->
+			where(sprintf("like_user=%s or like_ip='%s'", $user->getID(), GDT_IP::current()))->
+			orderDESC('like_created')->
+			first()->exec()->
+			fetchValue();
 		if ( $lastVoteDate && (Time::getAgo($lastVoteDate) < $table->gdoLikeCooldown()) )
 		{
 			return $this->error('err_vote_frequency', [Time::humanDuration($table->gdoLikeCooldown())]);
