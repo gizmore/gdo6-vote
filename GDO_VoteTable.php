@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Vote;
 use GDO\Core\GDO;
+use GDO\DB\GDT_CreatedAt;
 use GDO\DB\GDT_Object;
 use GDO\Net\GDT_IP;
 use GDO\DB\GDT_Int;
@@ -18,6 +19,8 @@ class GDO_VoteTable extends GDO
 	public function gdoVoteObjectTable() {}
 	public function gdoVoteMax() { return 5; }
 	public function gdoVotesBeforeOutcome() { return 3; }
+	public function gdoVoteCooldown() { return 60*60*24; }
+	public function gdoVoteGuests() { return true; }
 	public function gdoCached() { return false; }
 	public function gdoAbstract() { return $this->gdoVoteObjectTable() === null; }
 	public function gdoColumns()
@@ -27,6 +30,7 @@ class GDO_VoteTable extends GDO
 			GDT_Object::make('vote_object')->table($this->gdoVoteObjectTable())->primary(),
 			GDT_IP::make('vote_ip')->notNull(),
 			GDT_Int::make('vote_value')->notNull()->unsigned()->bytes(1),
+			GDT_CreatedAt::make('vote_created'),
 		);
 	}
 	/**

@@ -1,6 +1,7 @@
 <?php
 return array(
 'err_vote_ip' => 'Your IP already has been voting for this recently.',
+'err_vote_guest' => 'Guests are not allowed to vote for this.',
 'votes' => 'Votes',
 'rating' => 'Rating',
 'tt_gdo_vote_open' => 'There have been %s/%s votes yet.',

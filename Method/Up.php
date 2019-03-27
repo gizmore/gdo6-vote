@@ -11,6 +11,7 @@ use GDO\Vote\GDO_VoteTable;
 use function React\Promise\race;
 use GDO\Core\Application;
 use GDO\Core\Website;
+use GDO\Date\Time;
 /**
  * Vote on an item.
  * Check for IP duplicates.
@@ -49,13 +50,21 @@ final class Up extends Method
 			return $this->error('err_rate_param_between', [1, $table->gdoVoteMax()]);
 		}
 		
-		$count = $table->countWhere(sprintf("vote_object=%s AND vote_ip='%s' AND vote_user!=%s", $object->getID(), GDT_IP::current(), $user->getID()));
+		if ($user->isGuest() && (!$table->gdoVoteGuests()))
+		{
+			return $this->error('err_vote_guest');
+		}
+		
+		$cooldown = Time::getDate(time()-$table->gdoVoteCooldown());
+		$where = sprintf("vote_object=%s AND vote_ip='%s' AND vote_user!=%s AND vote_created>='%s'",
+			$object->getID(), GDT_IP::current(), $user->getID(), $cooldown);
+		$count = $table->countWhere($where);
 		
 		if ($count === 0)
 		{
 			# Vote
 			$vote = $class::blank(array(
-				'vote_user' => $user->getID(),
+				'vote_user' => $user->persistent()->getID(),
 				'vote_object' => $object->getID(),
 				'vote_ip' => GDT_IP::current(),
 				'vote_value' => $value,
