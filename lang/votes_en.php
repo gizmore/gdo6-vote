@@ -1,5 +1,7 @@
 <?php
 return array(
+'cfg_likes' => 'Number of likes',
+##########################################################
 'err_vote_ip' => 'Your IP already has been voting for this recently.',
 'err_vote_guest' => 'Guests are not allowed to vote for this.',
 'votes' => 'Votes',
