@@ -4,6 +4,7 @@ return array(
 ##########################################################
 'err_vote_ip' => 'La vostra IP ha votato ultimamente.',
 'err_vote_guest' => 'Ospiti non possono dare il suo voto.',
+'err_vote_gdo' => 'The object to rate could not been found.',
 'votes' => 'Valutazioni',
 'rating' => 'Valutazione',
 'tt_gdo_vote_open' => 'Ci sono stati solo %s/%s voti.',

@@ -4,6 +4,7 @@ return array(
 ##########################################################
 'err_vote_ip' => 'Ihre IP hat kürzlich hierfür gestimmt.',
 'err_vote_guest' => 'Gäste dürfen hierfür keine Stimme abgeben.',
+'err_vote_gdo' => 'Das zu bewertende Objekt wurde nicht gefunden.',
 'votes' => 'Bewertungen',
 'rating' => 'Bewertung',
 'tt_gdo_vote_open' => 'Es gab bislang nur %s/%s Stimmen.',
