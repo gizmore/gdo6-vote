@@ -76,11 +76,16 @@ trait WithVotes
 		return $votes->countWhere('vote_object='.$this->getID());
 	}
 	
+	public function displayVoteRating()
+	{
+		return sprintf('%.1f', $this->getVoteRating());
+	}
+	
 	public function getVoteRating()
 	{
 		if ($column = $this->getVoteRatingColumn())
 		{
-			return $column->getValue();
+			return $column->getVar();
 		}
 		return $this->queryVoteRating();
 	}
@@ -104,6 +109,18 @@ trait WithVotes
 		$votes = $this->gdoVoteTable();
 		$votes instanceof GDO_VoteTable;
 		return (int) $votes->select('AVG(vote_value)')->where('vote_object='.$this->getID())->exec()->fetchValue();
+	}
+	
+	public function hasEnoughVotes()
+	{
+		$votesNeeded = $this->gdoVoteTable()->gdoVotesBeforeOutcome();
+		$votesHave = $this->getVoteCount();
+		return $votesHave >= $votesNeeded;
+	}
+	
+	public function getVoteOutcomeId()
+	{
+		return 'votes-' . $this->gdoTableName() . '-' . $this->getID();
 	}
 	
 }

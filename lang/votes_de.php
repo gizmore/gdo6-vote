@@ -16,4 +16,5 @@ return array(
 'votepopup_rating' => 'Bewertung: %s',
 ####
 'btn_likes' => 'Likes',
+'meta_votes' => '%s mit %s Stimme(n)',
 );

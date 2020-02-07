@@ -12,6 +12,8 @@ use function React\Promise\race;
 use GDO\Core\Application;
 use GDO\Core\Website;
 use GDO\Date\Time;
+use GDO\UI\GDT_Label;
+use GDO\Core\GDT_JSON;
 /**
  * Vote on an item.
  * Check for IP duplicates.
@@ -80,14 +82,19 @@ final class Up extends Method
 			
 			if (Application::instance()->isAjax())
 			{
-				return GDT_Response::make(array(
-//	 				'object' => $object->toJSON(),
-					'message' => t('msg_voted'),
-					'countClass' => $countColumn ? $countColumn->name. '-vote-count-'.$object->getID() : '',
-					'ratingClass' => $rateColumn ? $rateColumn->name. '-vote-rating-'.$object->getID() : '',
-					'count' => $object->getVoteCount(),
-					'rating' => $object->getVoteRating(),
-				));
+				$enough = $object->hasEnoughVotes();
+				$count = $enough ? $object->getVoteCount() : -1;
+				$rating = $enough ? $object->displayVoteRating() : -1;
+				return GDT_Response::makeWith(
+					GDT_JSON::make()->value(array(
+						'message' => t('msg_voted'),
+						'outcome' => $enough ? t('meta_votes', [$rating, $count]) : $rateColumn->render(),
+						'outcomeId' => $object->getVoteOutcomeId(),
+						'enough' => $enough,
+						'count' => $count,
+						'rating' => $rating,
+					))
+				);
 			}
 			return Website::redirectBack();
 		}
