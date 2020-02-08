@@ -14,6 +14,7 @@ use GDO\Core\Website;
 use GDO\Date\Time;
 use GDO\UI\GDT_Label;
 use GDO\Core\GDT_JSON;
+use GDO\Vote\WithVotes;
 /**
  * Vote on an item.
  * Check for IP duplicates.
@@ -77,6 +78,7 @@ final class Up extends Method
 			# Update cache
 			$object->setVar('own_vote', $value);
 			$object->updateVotes();
+			$object instanceof WithVotes;
 			$countColumn = $object->getVoteCountColumn();
 			$rateColumn = $object->getVoteRatingColumn();
 			

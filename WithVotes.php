@@ -108,7 +108,7 @@ trait WithVotes
 	{
 		$votes = $this->gdoVoteTable();
 		$votes instanceof GDO_VoteTable;
-		return (int) $votes->select('AVG(vote_value)')->where('vote_object='.$this->getID())->exec()->fetchValue();
+		return $votes->select('AVG(vote_value)')->where('vote_object='.$this->getID())->exec()->fetchValue();
 	}
 	
 	public function hasEnoughVotes()
