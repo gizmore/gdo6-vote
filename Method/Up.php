@@ -11,6 +11,7 @@ use GDO\Vote\GDO_VoteTable;
 use function React\Promise\race;
 use GDO\Core\Application;
 use GDO\Core\Website;
+use GDO\DB\GDT_String;
 use GDO\Date\Time;
 use GDO\UI\GDT_Label;
 use GDO\Core\GDT_JSON;
@@ -22,6 +23,13 @@ use GDO\Vote\WithVotes;
  */
 final class Up extends Method
 {
+	public function gdoParameters()
+	{
+		return array(
+			GDT_String::make('gdo')->notNull(),
+		);
+	}
+	
 	public function execute()
 	{
 		$user = GDO_User::current();

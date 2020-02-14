@@ -10,6 +10,7 @@ use GDO\Util\Common;
 use GDO\Vote\GDO_LikeTable;
 use GDO\Vote\GDT_LikeButton;
 use GDO\Date\Time;
+use GDO\DB\GDT_String;
 
 /**
  * The method to like an item.
@@ -17,6 +18,13 @@ use GDO\Date\Time;
  */
 final class Like extends Method
 {
+	public function gdoParameters()
+	{
+		return array(
+			GDT_String::make('gdo')->notNull(),
+		);
+	}
+	
 	public function execute()
 	{
 		$user = GDO_User::current();
