@@ -13,7 +13,6 @@ use GDO\Core\Application;
 use GDO\Core\Website;
 use GDO\DB\GDT_String;
 use GDO\Date\Time;
-use GDO\UI\GDT_Label;
 use GDO\Core\GDT_JSON;
 use GDO\Vote\WithVotes;
 /**
@@ -66,7 +65,7 @@ final class Up extends Method
 			return $this->error('err_vote_guest');
 		}
 		
-		$cooldown = Time::getDate(time()-$table->gdoVoteCooldown());
+		$cooldown = Time::getDate(Application::$TIME - $table->gdoVoteCooldown());
 		$where = sprintf("vote_object=%s AND vote_ip='%s' AND vote_user!=%s AND vote_created>='%s'",
 			$object->getID(), GDT_IP::current(), $user->getID(), $cooldown);
 		$count = $table->countWhere($where);
@@ -87,7 +86,7 @@ final class Up extends Method
 			$object->setVar('own_vote', $value);
 			$object->updateVotes();
 			$object instanceof WithVotes;
-			$countColumn = $object->getVoteCountColumn();
+// 			$countColumn = $object->getVoteCountColumn();
 			$rateColumn = $object->getVoteRatingColumn();
 			
 			if (Application::instance()->isAjax())
