@@ -51,7 +51,15 @@ final class Up extends Method
 		$objects instanceof GDO;
 		
 		# Get GDO row, e.g. Link
+		/**
+		 * @var WithVotes $object
+		 */
 		$object = $objects->find(Common::getRequestString('id'));
+		
+		if (!$object->gdoVoteAllowed($user))
+		{
+		    return $this->error('err_vote_not_allowed')->add(Website::redirectBack(5));
+		}
 		
 		# Check rate value
 		if ( (!($value = Common::getRequestInt('rate'))) ||

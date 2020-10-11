@@ -11,6 +11,7 @@ return array(
 ##########################################################
 'err_vote_count' => 'Sie haben hierfür mehr als %s mal abgestimmt.',
 'err_vote_frequency' => 'Sie haben kürzlich zu viele Stimmen abgegen: %s.',
+'err_vote_not_allowed' => 'Sie dürfen dies nicht bewerten.',
 ##########################################################
 'dlg_votepopup_title' => 'Bewerten Sie dies',
 'votepopup_votes' => 'Stimmen: %s',

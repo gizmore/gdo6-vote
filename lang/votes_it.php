@@ -11,6 +11,7 @@ return array(
 ##########################################################
 'err_vote_count' => 'Avete votato piu di %s volte.',
 'err_vote_frequency' => 'Avete consegnato troppi voti: %s.',
+'err_vote_not_allowed' => 'Non sei autorizzato a valutare questo.',
 ##########################################################
 'dlg_votepopup_title' => 'Valuti questo:',
 'votepopup_votes' => 'Voto: %s',

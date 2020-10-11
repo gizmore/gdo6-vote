@@ -4,6 +4,7 @@ namespace GDO\Vote;
 use GDO\Core\GDT_Template;
 use GDO\Core\GDT;
 use GDO\UI\WithLabel;
+use GDO\User\GDO_User;
 
 final class GDT_VoteSelection extends GDT
 {
@@ -55,6 +56,16 @@ final class GDT_VoteSelection extends GDT
 			'count' => $this->voteCount(),
 			'voteurl' => $this->hrefVote(),
 		);
+	}
+	
+	public function canVote()
+	{
+	    $user = GDO_User::current();
+	    if ($user->isGuest() && (!$this->gdo->gdoVoteTable()->gdoVoteGuests()) )
+	    {
+	        return false;
+	    }
+	    return $this->gdo->gdoVoteAllowed($user);
 	}
 	
 	public function renderCell()

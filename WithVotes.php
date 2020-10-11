@@ -16,7 +16,12 @@ trait WithVotes
 //	 public function gdoVoteTable()
 //	 {
 //	 }
-	
+
+    public function gdoVoteAllowed(GDO_User $user)
+    {
+        return true;
+    }
+    
 	public function hasVoted(GDO_User $user)
 	{
 		return !!$this->getVote($user);

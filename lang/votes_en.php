@@ -11,6 +11,7 @@ return array(
 ##########################################################
 'err_vote_count' => 'You voted for this item more than %s time(s).',
 'err_vote_frequency' => 'You have voted too much in the past %s.',
+'err_vote_not_allowed' => 'You are not allowed to vote that item.',
 ##########################################################
 'dlg_votepopup_title' => 'Rate this item',
 'votepopup_votes' => 'Votes: %s',
