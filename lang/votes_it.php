@@ -16,6 +16,7 @@ return array(
 'dlg_votepopup_title' => 'Valuti questo:',
 'votepopup_votes' => 'Voto: %s',
 'votepopup_rating' => 'Valutazione: %s',
+'vote_count' => '%s voto',
 ####
 'btn_likes' => 'Likes',															
 'meta_votes' => '%s with %s votes',
