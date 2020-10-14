@@ -81,9 +81,15 @@ trait WithVotes
 		return $votes->countWhere('vote_object='.$this->getID());
 	}
 	
+	public function displayVoteCount()
+	{
+	    $count = $this->getVoteCount();
+	    return t('vote_count',  [$count]);
+	}
+	
 	public function displayVoteRating()
 	{
-		return sprintf('%.1f', $this->getVoteRating());
+		return sprintf('%.01f', $this->getVoteRating());
 	}
 	
 	public function getVoteRating()

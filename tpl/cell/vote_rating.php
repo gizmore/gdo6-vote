@@ -9,11 +9,11 @@ $votesHave = $gdo->getVoteCount();
 if ($votesHave >= $votesNeeded)
 {
     $value = sprintf('%.01f', $gdo->getVoteRating());
-	echo GDT_Badge::make()->value($value)->render();
+	echo GDT_Badge::make()->addClass('vote-rating')->value($value)->render();
 }
 else 
 {
-	echo GDT_Tooltip::make()->tooltip('tt_gdo_vote_open', [$votesHave, $votesNeeded])->renderCell();
+	echo GDT_Tooltip::make()->addClass('vote-rating')->tooltip('tt_gdo_vote_open', [$votesHave, $votesNeeded])->renderCell();
 }
 ?>
 </span>

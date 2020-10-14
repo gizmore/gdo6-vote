@@ -100,12 +100,12 @@ final class Up extends Method
 			if (Application::instance()->isAjax())
 			{
 				$enough = $object->hasEnoughVotes();
-				$count = $enough ? $object->getVoteCount() : -1;
+				$count = $enough ? $object->displayVoteCount() : -1;
 				$rating = $enough ? $object->displayVoteRating() : -1;
 				return GDT_Response::makeWith(
-					GDT_JSON::make()->value(array(
+					GDT_JSON::make('json')->value(array(
 						'message' => t('msg_voted'),
-						'outcome' => $enough ? t('meta_votes', [$rating, $count]) : $rateColumn->render(),
+					    'outcome' => $rateColumn->render() . $object->getVoteCountColumn()->render(),
 						'outcomeId' => $object->getVoteOutcomeId(),
 						'enough' => $enough,
 						'count' => $count,
