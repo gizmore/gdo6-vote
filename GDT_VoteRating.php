@@ -7,7 +7,9 @@ use GDO\DB\GDT_Decimal;
 
 final class GDT_VoteRating extends GDT_Decimal
 {
-	public function defaultLabel() { return $this->label('rating'); }
+    public $orderDefaultAsc = false;
+    
+    public function defaultLabel() { return $this->label('rating'); }
 	
 	/**
 	 * @return GDO|WithVotes
