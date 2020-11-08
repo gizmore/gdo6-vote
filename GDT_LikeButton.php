@@ -44,7 +44,7 @@ class GDT_LikeButton extends GDT_Link
 		return GDT_Template::php('Vote', 'cell/like_button.php', ['field'=>$this]);
 	}
 	
-	public function renderJSON()
+	public function configJSON()
 	{
 		return [$this->name => [
 			'count' => $this->getLikeObject()->getLikeCount(),
