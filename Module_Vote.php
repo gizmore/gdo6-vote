@@ -3,6 +3,7 @@ namespace GDO\Vote;
 
 use GDO\Core\GDO_Module;
 use GDO\DB\GDT_UInt;
+use GDO\Core\Application;
 
 final class Module_Vote extends GDO_Module
 {
@@ -12,11 +13,14 @@ final class Module_Vote extends GDO_Module
 	
 	public function onIncludeScripts()
 	{
-		if (module_enabled('Angular'))
-		{
-			$this->addJavascript('js/gwf-vote-ctrl.js');
-		}
-		if (module_enabled('JQuery'))
+	    if (Application::instance()->hasTheme('material'))
+	    {
+    		if (module_enabled('Angular'))
+    		{
+    			$this->addJavascript('js/gwf-vote-ctrl.js');
+    		}
+	    }
+	    elseif (module_enabled('JQuery'))
 		{
 			$this->addJavascript('js/gdo-vote.js');
 		}
@@ -32,4 +36,5 @@ final class Module_Vote extends GDO_Module
 			GDT_UInt::make('likes')->initial('0'),
 		);
 	}
+
 }
