@@ -21,7 +21,7 @@ final class GDT_VoteRating extends GDT_Decimal
 	    $this->writable = false;
 	    $this->editable = false;
 		$this->digits(3, 1);
-		$this->initial('0.0');
+		$this->initial('0');
 	}
 
 	public function renderCell()
