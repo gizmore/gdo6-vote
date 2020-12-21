@@ -20,7 +20,8 @@ final class GDT_VoteRating extends GDT_Decimal
 	{
 	    $this->writable = false;
 	    $this->editable = false;
-		$this->digits(3, 1);
+		$this->digits(2, 2);
+		$this->notNull();
 		$this->initial('0');
 	}
 
