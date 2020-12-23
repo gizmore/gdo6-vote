@@ -11,7 +11,7 @@ class GDT_LikeButton extends GDT_Link
 {
 	public function defaultLabel() { return $this->label('likes'); }
 	
-	public function __construct()
+	protected function __construct()
 	{
 		$this->icon('like');
 	}

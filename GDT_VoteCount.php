@@ -11,7 +11,7 @@ class GDT_VoteCount extends GDT_UInt
 	
 	public function defaultLabel() { return $this->label('votes'); }
 
-	public function __construct()
+	protected function __construct()
 	{
 		$this->initial = "0";
 	}

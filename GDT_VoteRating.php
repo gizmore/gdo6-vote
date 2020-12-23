@@ -16,7 +16,7 @@ final class GDT_VoteRating extends GDT_Decimal
 	 */
 	public function getVoteObject() { return $this->gdo; }
 	
-	public function __construct()
+	protected function __construct()
 	{
 	    $this->writable = false;
 	    $this->editable = false;
