@@ -20,4 +20,5 @@ return array(
 ####
 'btn_likes' => 'Likes',
 'meta_votes' => '%s mit %s Stimme(n)',
+'err_cannot_like' => 'Sie können dies nicht liken.',
 );

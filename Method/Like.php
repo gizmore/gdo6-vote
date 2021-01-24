@@ -54,6 +54,11 @@ final class Like extends Method
 		# Get GDO row, e.g. Link
 		$object = $objects->find(Common::getRequestString('id'));
 		
+		if (!$object->gdoCanLike($user))
+		{
+		    return $this->error('err_cannot_like');
+		}
+		
 		# Check IP count
 		$count = $table->countWhere(sprintf("like_object=%s AND like_ip='%s'", $object->getID(), GDT_IP::current()));
 		if ($count >= $table->gdoMaxLikeCount())

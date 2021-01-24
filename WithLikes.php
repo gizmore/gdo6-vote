@@ -5,6 +5,11 @@ use GDO\User\GDO_User;
 
 trait WithLikes
 {
+    public function gdoCanLike(GDO_User $user)
+    {
+        return true;
+    }
+    
 	public function hasLiked(GDO_User $user)
 	{
 		return !!$this->getLike($user);
