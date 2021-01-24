@@ -3,21 +3,20 @@ namespace GDO\Vote\Method;
 
 use GDO\Core\Method;
 use GDO\Core\GDO;
-use GDO\Core\Website;
 use GDO\Net\GDT_IP;
 use GDO\Core\GDT_Response;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Vote\GDO_LikeTable;
 use GDO\Vote\GDT_LikeButton;
-use GDO\Date\Time;
 use GDO\DB\GDT_String;
+use GDO\Core\Website;
 
 /**
  * The method to like an item.
  * @author gizmore
  */
-final class Like extends Method
+final class UnLike extends Method
 {
 	public function gdoParameters()
 	{
@@ -54,40 +53,15 @@ final class Like extends Method
 		# Get GDO row, e.g. Link
 		$object = $objects->find(Common::getRequestString('id'));
 		
-		# Check IP count
-		$count = $table->countWhere(sprintf("like_object=%s AND like_ip='%s'", $object->getID(), GDT_IP::current()));
-		if ($count >= $table->gdoMaxLikeCount())
-		{
-			return $this->error('err_vote_ip');
-		}
-		
 		# Check user count
 		$count = $table->countWhere(sprintf("like_object=%s AND like_user='%s'", $object->getID(), $user->getID()));
-		if ($count >= $table->gdoMaxLikeCount())
+		if ($count < 1)
 		{
-			return $this->error('err_vote_count', [$table->gdoMaxLikeCount()]);
+			return $this->error('err_not_liked');
 		}
-		
-		# Check last vote date against cooldown
-		$lastVoteDate = $table->select('like_created')->
-			where(sprintf("like_object=%s", $object->getID()))->
-			where(sprintf("like_user=%s or like_ip='%s'", $user->getID(), GDT_IP::current()))->
-			orderDESC('like_created')->
-			first()->exec()->
-			fetchValue();
-		if ( $lastVoteDate && (Time::getAgo($lastVoteDate) < $table->gdoLikeCooldown()) )
-		{
-			return $this->error('err_vote_frequency', [Time::humanDuration($table->gdoLikeCooldown())]);
-		}
-		
-		# Vote
-		$like = $class::blank(array(
-			'like_user' => $user->getID(),
-			'like_object' => $object->getID(),
-			'like_ip' => GDT_IP::current(),
-		));
-		$like instanceof GDO_LikeTable;
-		$like->insert();
+
+		# Delete like
+		$table->deleteWhere("like_object={$object->getID()} AND like_user={$user->getID()}");
 
 		# Update cache
 		$object->updateLikes();

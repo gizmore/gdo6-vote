@@ -27,7 +27,7 @@ trait WithLikes
 				$vars[$gdoType->name] = $this->queryLikeCount();
 			}
 		}
-		return $this->saveVars($vars);
+		return $this->saveVars($vars, false);
 	}
 	
 	public function getLikeCount()

@@ -2,17 +2,17 @@
 namespace GDO\Vote;
 
 use GDO\Core\GDT_Template;
-use GDO\UI\GDT_Button;
 use GDO\Core\GDO;
-use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
+use GDO\UI\GDT_IconButton;
 
-class GDT_LikeButton extends GDT_Link
+class GDT_LikeButton extends GDT_IconButton
 {
 	public function defaultLabel() { return $this->label('likes'); }
 	
 	protected function __construct()
 	{
+	    parent::__construct();
 		$this->icon('like');
 	}
 	
@@ -21,11 +21,17 @@ class GDT_LikeButton extends GDT_Link
 		parent::gdo($gdo);
 		$likeObject = $this->getLikeObject();
 		$likeTable = $this->getLikeTable();
-		$this->href = href('Vote', 'Like', "&gdo={$likeTable->gdoClassName()}&id={$likeObject->getID()}");
-		$this->editable(!$gdo->hasLiked(GDO_User::current()));
+		$hasLiked = $likeObject->hasLiked(GDO_User::current());
+		$method = $hasLiked ? 'UnLike' : 'Like';
+		$this->href = href('Vote', $method, "&gdo={$likeTable->gdoClassName()}&id={$likeObject->getID()}");
+// 		$this->editable(!$gdo->hasLiked(GDO_User::current()));
 		return $this;
 	}
 
+
+	/**
+	 * @return WithLikes
+	 */
 	public function getLikeObject()
 	{
 		return $this->gdo;
@@ -44,10 +50,26 @@ class GDT_LikeButton extends GDT_Link
 		return GDT_Template::php('Vote', 'cell/like_button.php', ['field'=>$this]);
 	}
 	
+	public $dislike = false;
+	public function dislike($dislike=true)
+	{
+	    $this->dislike = $dislike;
+	    return $this;
+	}
+	
 	public function configJSON()
 	{
-		return [$this->name => [
+		return array_merge(parent::configJSON(), [
 			'count' => $this->getLikeObject()->getLikeCount(),
-		]];
+		]);
 	}
+	
+	public function renderJSON()
+	{
+	    return [
+	        'html' => $this->renderCell(),
+	        'count' => $this->getLikeObject()->getLikeCount(),
+	    ];
+	}
+	
 }
