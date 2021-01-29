@@ -9,6 +9,8 @@ use GDO\User\GDO_User;
 use GDO\Util\Common;
 use GDO\Vote\GDO_LikeTable;
 use GDO\Vote\GDT_LikeButton;
+use GDO\Vote\Module_Vote;
+use GDO\DB\GDT_CreatedBy;
 use GDO\DB\GDT_String;
 use GDO\Core\Website;
 
@@ -65,7 +67,14 @@ final class UnLike extends Method
 
 		# Update cache
 		$object->updateLikes();
-
+		
+		# Update user likes
+		if ($otherUser = $object->gdoColumnOf(GDT_CreatedBy::class))
+		{
+		    $otherUser = $otherUser->getValue();
+		    Module_Vote::instance()->increaseUserSetting($otherUser, 'likes', -1);
+		}
+		
 		Website::redirectBack();
 		
 		return GDT_Response::makeWith(

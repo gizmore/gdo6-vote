@@ -12,6 +12,8 @@ use GDO\Vote\GDO_LikeTable;
 use GDO\Vote\GDT_LikeButton;
 use GDO\Date\Time;
 use GDO\DB\GDT_String;
+use GDO\Vote\Module_Vote;
+use GDO\DB\GDT_CreatedBy;
 
 /**
  * The method to like an item.
@@ -93,10 +95,17 @@ final class Like extends Method
 		));
 		$like instanceof GDO_LikeTable;
 		$like->insert();
-
+		
 		# Update cache
 		$object->updateLikes();
 
+		# Update user likes
+		if ($otherUser = $object->gdoColumnOf(GDT_CreatedBy::class))
+		{
+		    $otherUser = $otherUser->getValue();
+		    Module_Vote::instance()->increaseUserSetting($otherUser, 'likes');
+		}
+		
 		Website::redirectBack();
 		
 		return GDT_Response::makeWith(
