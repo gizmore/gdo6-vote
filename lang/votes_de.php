@@ -19,6 +19,7 @@ return array(
 'vote_count' => '%s Stimme(n)',
 ####
 'btn_likes' => 'Likes',
+'num_likes' => 'Likes: %s',
 'meta_votes' => '%s mit %s Stimme(n)',
 'err_cannot_like' => 'Sie können dies nicht liken.',
 );

@@ -3,7 +3,6 @@ namespace GDO\Vote\Method;
 
 use GDO\Core\Method;
 use GDO\Core\GDO;
-use GDO\Net\GDT_IP;
 use GDO\Core\GDT_Response;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
@@ -63,16 +62,19 @@ final class UnLike extends Method
 		}
 
 		# Delete like
-		$table->deleteWhere("like_object={$object->getID()} AND like_user={$user->getID()}");
+		$deleted = $table->deleteWhere("like_object={$object->getID()} AND like_user={$user->getID()}");
 
 		# Update cache
 		$object->updateLikes();
 		
-		# Update user likes
-		if ($otherUser = $object->gdoColumnOf(GDT_CreatedBy::class))
+		if ($deleted)
 		{
-		    $otherUser = $otherUser->getValue();
-		    Module_Vote::instance()->increaseUserSetting($otherUser, 'likes', -1);
+    		# Update user likes
+    		if ($otherUser = $object->gdoColumnOf(GDT_CreatedBy::class))
+    		{
+    		    $otherUser = $otherUser->getValue();
+    		    Module_Vote::instance()->increaseUserSetting($otherUser, 'likes', -1);
+    		}
 		}
 		
 		Website::redirectBack();
