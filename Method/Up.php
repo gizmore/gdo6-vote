@@ -52,7 +52,7 @@ final class Up extends Method
 		
 		# Get GDO row, e.g. Link
 		/**
-		 * @var WithVotes $object
+		 * @var GDO $object
 		 */
 		$object = $objects->find(Common::getRequestString('id'));
 		
