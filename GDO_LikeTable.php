@@ -25,7 +25,7 @@ class GDO_LikeTable extends GDO
 	{
 		return array(
 			GDT_AutoInc::make('like_id'),
-			GDT_User::make('like_user'),
+		    GDT_User::make('like_user')->notNull(),
 			GDT_Object::make('like_object')->table($this->gdoLikeObjectTable()),
 			GDT_IP::make('like_ip')->notNull(),
 			GDT_CreatedAt::make('like_created'),
