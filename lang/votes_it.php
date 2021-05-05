@@ -8,6 +8,7 @@ return array(
 'votes' => 'Valutazioni',
 'rating' => 'Valutazione',
 'tt_gdo_vote_open' => 'Ci sono stati solo %s/%s voti.',
+'msg_voted' => 'Grazie per la tua recensione.',
 ##########################################################
 'err_vote_count' => 'Avete votato piu di %s volte.',
 'err_vote_frequency' => 'Avete consegnato troppi voti: %s.',
@@ -22,4 +23,5 @@ return array(
 'num_likes' => 'Likes: %s',
 'meta_votes' => '%s with %s votes',
 'err_cannot_like' => 'Sie können dies nicht liken.',
+'err_not_liked' => 'Sie können Ihren Like nicht zurücknehmen.',
 );

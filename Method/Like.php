@@ -33,7 +33,7 @@ final class Like extends Method
 		$user = GDO_User::current();
 		
 		# Get LikeTable, e.g. GDO_CommentLike
-		$class = Common::getRequestString('gdo');
+		$class = $this->gdoParameterVar('gdo');
 		if (!class_exists($class))
 		{
 			return $this->error('err_vote_gdo');
@@ -80,8 +80,7 @@ final class Like extends Method
 			where(sprintf("like_object=%s", $object->getID()))->
 			where(sprintf("like_user=%s or like_ip='%s'", $user->getID(), GDT_IP::current()))->
 			orderDESC('like_created')->
-			first()->exec()->
-			fetchValue();
+			first()->exec()->fetchValue();
 		if ( $lastVoteDate && (Time::getAgo($lastVoteDate) < $table->gdoLikeCooldown()) )
 		{
 			return $this->error('err_vote_frequency', [Time::humanDuration($table->gdoLikeCooldown())]);

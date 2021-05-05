@@ -8,6 +8,7 @@ return array(
 'votes' => 'Votes',
 'rating' => 'Rating',
 'tt_gdo_vote_open' => 'There have been %s/%s votes yet.',
+'msg_voted' => 'Thank you for your vote.',
 ##########################################################
 'err_vote_count' => 'You voted for this item more than %s time(s).',
 'err_vote_frequency' => 'You have voted too much in the past %s.',
@@ -22,4 +23,5 @@ return array(
 'num_likes' => 'Likes: %s',
 'meta_votes' => '%s with %s votes',
 'err_cannot_like' => 'You cannot like this.',
+'err_not_liked' => 'You cannot unlike something you did not like.',
 );

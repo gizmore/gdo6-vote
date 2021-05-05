@@ -8,11 +8,8 @@ $(function(){
 			method: 'post',
 		}).then(function(result){
 			id = "." + gdo + "-" + id + "-likes";
-			$(id).parent().replaceWith(result.data.likes.html);
+			$(id).parent().replaceWith(result.json.likes.html);
 			$(id).parent().click(likeBtnClick.bind($(id).parent().get(0)));
-//			var count = result.data.likes.count;
-//			id = "." + gdo + "-" + id + "-likes b";
-//			$(id).text(count);
 		}, function(error) {
 			window.GDO.error(error.responseJSON);
 		});
@@ -22,4 +19,5 @@ $(function(){
 	$('.gdt-like-button').each(function(btn) {
 		$(this).click(likeBtnClick.bind(this));
 	});
+	
 });

@@ -20,7 +20,7 @@ use GDO\Vote\WithVotes;
  * Vote on an item.
  * Check for IP duplicates.
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.2
  * @since 5.0.0
  */
 final class Up extends Method
@@ -107,7 +107,7 @@ final class Up extends Method
 				$count = $enough ? $object->displayVoteCount() : -1;
 				$rating = $enough ? $object->displayVoteRating() : -1;
 				return GDT_Response::makeWith(
-					GDT_JSON::make('json')->value([
+					GDT_JSON::make()->value([
 						'message' => t('msg_voted'),
 					    'outcome' => $rateColumn->render() . $object->getVoteCountColumn()->render(),
 						'outcomeId' => $object->getVoteOutcomeId(),
@@ -117,7 +117,7 @@ final class Up extends Method
 					])
 				);
 			}
-			return Website::redirectMessage('msg_thx_for_vote');
+			return Website::redirectMessage('msg_voted');
 		}
 		return $this->error('err_vote_ip');
 	}
