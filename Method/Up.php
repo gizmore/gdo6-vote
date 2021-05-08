@@ -68,7 +68,7 @@ final class Up extends Method
 		
 		if (!$object->gdoVoteAllowed($user))
 		{
-		    return $this->error('err_vote_not_allowed')->add(Website::redirectBack(5));
+		    return $this->error('err_vote_not_allowed')->addField(Website::redirectBack(5));
 		}
 		
 		# Check rate value
