@@ -23,18 +23,20 @@ class GDO_LikeTable extends GDO
 	public function gdoAbstract() { return $this->gdoLikeObjectTable() === null; }
 	public function gdoColumns()
 	{
-		return array(
-			GDT_AutoInc::make('like_id'),
+		return [
+		    GDT_AutoInc::make('like_id'),
 		    GDT_User::make('like_user')->notNull(),
-			GDT_Object::make('like_object')->table($this->gdoLikeObjectTable()),
-			GDT_IP::make('like_ip')->notNull(),
+			GDT_Object::make('like_object')->table($this->gdoLikeObjectTable())->notNull(),
+			GDT_IP::make('like_ip')->useCurrent()->notNull(),
 			GDT_CreatedAt::make('like_created'),
-		);
+		];
 	}
 	
 	public function getLike(GDO_User $user, GDO $likeObject)
 	{
-		return self::table()->select()->where("like_user={$user->getID()} AND like_object={$likeObject->getID()}")->first()->exec()->fetchObject();
+	    return $this->select()->
+	       where(sprintf('like_user=%s AND like_object=%s', $user->getID(), $likeObject->getID()))->
+	       first()->exec()->fetchObject();
 	}
 	
 }

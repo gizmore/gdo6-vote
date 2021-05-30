@@ -10,20 +10,38 @@ use GDO\Vote\GDO_LikeTable;
 use GDO\Vote\GDT_LikeButton;
 use GDO\Vote\Module_Vote;
 use GDO\DB\GDT_CreatedBy;
+use GDO\DB\GDT_Object;
 use GDO\DB\GDT_String;
 use GDO\Core\Website;
+use GDO\Core\Application;
 
 /**
  * The method to like an item.
  * @author gizmore
  */
-final class UnLike extends Method
+class UnLike extends Method
 {
-	public function gdoParameters()
+    public function isCLI() { return false; }
+    
+    public function gdoParameters()
 	{
-		return array(
-			GDT_String::make('gdo')->notNull(),
-		);
+	    return [
+	        GDT_String::make('gdo')->notNull(),
+	        GDT_Object::make('id')->table($this->getLikeTable())->notNull(),
+	    ];
+	}
+	
+	/**
+	 * @return GDO_LikeTable
+	 */
+	public function getLikeTable()
+	{
+	    return call_user_func([$this->getLikeTableClass(), 'table']);
+	}
+	
+	public function getLikeTableClass()
+	{
+	    return $this->gdoParameterVar('gdo');
 	}
 	
 	public function execute()
@@ -31,7 +49,7 @@ final class UnLike extends Method
 		$user = GDO_User::current();
 		
 		# Get LikeTable, e.g. GDO_CommentLike
-		$class = Common::getRequestString('gdo');
+		$class = $this->getLikeTableClass();
 		if (!class_exists($class))
 		{
 			return $this->error('err_vote_gdo');
@@ -78,6 +96,11 @@ final class UnLike extends Method
 		}
 		
 		Website::redirectBack();
+		
+		if (Application::instance()->isCLI())
+		{
+		    return $this->message('msg_disliked');
+		}
 		
 		return GDT_Response::makeWith(
 			GDT_LikeButton::make('likes')->gdo($object)

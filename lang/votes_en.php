@@ -24,4 +24,6 @@ return array(
 'meta_votes' => '%s with %s votes',
 'err_cannot_like' => 'You cannot like this.',
 'err_not_liked' => 'You cannot unlike something you did not like.',
+'msg_liked' => 'You like this!',
+'msg_disliked' => 'You dislike this!',
 );

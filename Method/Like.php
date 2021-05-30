@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Vote\Method;
 
+use GDO\Core\Application;
 use GDO\Core\Method;
 use GDO\Core\GDO;
 use GDO\Core\Website;
@@ -14,18 +15,35 @@ use GDO\Date\Time;
 use GDO\DB\GDT_String;
 use GDO\Vote\Module_Vote;
 use GDO\DB\GDT_CreatedBy;
+use GDO\DB\GDT_Object;
 
 /**
  * The method to like an item.
  * @author gizmore
  */
-final class Like extends Method
+class Like extends Method
 {
+    public function isCLI() { return false; }
+    
 	public function gdoParameters()
 	{
-		return array(
+		return [
 			GDT_String::make('gdo')->notNull(),
-		);
+		    GDT_Object::make('id')->table($this->getLikeTable())->notNull(),
+		];
+	}
+
+	/**
+	 * @return GDO_LikeTable
+	 */
+	public function getLikeTable()
+	{
+	    return call_user_func([$this->getLikeTableClass(), 'table']);
+	}
+	
+	public function getLikeTableClass()
+	{
+	    return $this->gdoParameterVar('gdo');
 	}
 	
 	public function execute()
@@ -33,7 +51,7 @@ final class Like extends Method
 		$user = GDO_User::current();
 		
 		# Get LikeTable, e.g. GDO_CommentLike
-		$class = $this->gdoParameterVar('gdo');
+		$class = $this->getLikeTableClass();
 		if (!class_exists($class))
 		{
 			return $this->error('err_vote_gdo');
@@ -106,6 +124,11 @@ final class Like extends Method
 		}
 		
 		Website::redirectBack();
+		
+		if (Application::instance()->isCLI())
+		{
+		    return $this->message('msg_liked');
+		}
 		
 		return GDT_Response::makeWith(
 			GDT_LikeButton::make('likes')->gdo($object)

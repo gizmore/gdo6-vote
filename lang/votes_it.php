@@ -24,4 +24,6 @@ return array(
 'meta_votes' => '%s with %s votes',
 'err_cannot_like' => 'Sie können dies nicht liken.',
 'err_not_liked' => 'Sie können Ihren Like nicht zurücknehmen.',
+'msg_liked' => 'Ti piace!',
+'msg_disliked' => 'Non ti piace!',
 );
