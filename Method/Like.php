@@ -97,7 +97,7 @@ class Like extends Method
 		$lastVoteDate = $table->select('like_created')->
 			where(sprintf("like_object=%s", $object->getID()))->
 			where(sprintf("like_user=%s or like_ip='%s'", $user->getID(), GDT_IP::current()))->
-			orderDESC('like_created')->
+			order('like_created DESC')->
 			first()->exec()->fetchValue();
 		if ( $lastVoteDate && (Time::getAgo($lastVoteDate) < $table->gdoLikeCooldown()) )
 		{
