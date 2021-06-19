@@ -24,6 +24,7 @@ use GDO\DB\GDT_Object;
 class Like extends Method
 {
     public function isCLI() { return false; }
+    public function showInSitemap() { return false; }
     
 	public function gdoParameters()
 	{
@@ -43,7 +44,7 @@ class Like extends Method
 	
 	public function getLikeTableClass()
 	{
-	    return $this->gdoParameterVar('gdo');
+	    return Common::getRequestString('gdo');
 	}
 	
 	public function execute()

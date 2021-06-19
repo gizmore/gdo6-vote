@@ -22,6 +22,7 @@ use GDO\Core\Application;
 class UnLike extends Method
 {
     public function isCLI() { return false; }
+    public function showInSitemap() { return false; }
     
     public function gdoParameters()
 	{
