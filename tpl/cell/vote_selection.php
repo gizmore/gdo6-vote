@@ -7,5 +7,5 @@ $can = $field->canVote();
 ?>
 <?php for ($i = 1; $i <= $max; $i++) : ?>
 <?php $color = $own < $i ? '#999' : '#ffd700'; ?>
-<?= GDT_IconButton::make()->icon('star')->noFollow()->disabled(!$can)->color($color)->href($field->hrefVoteScore($i))->render(); ?>
+<?= GDT_IconButton::make()->icon('star')->noFollow()->disabled(!$can)->iconColor($color)->href($field->hrefVoteScore($i))->render(); ?>
 <?php endfor; ?>
