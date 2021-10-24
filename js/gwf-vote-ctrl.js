@@ -9,7 +9,7 @@ controller('GDOVoteCtrl', function($scope, $compile, GDORequestSrvc) {
 	};
 	$scope.onVote = function(vote) {
 		console.log('GDOVoteCtrl.onVote()', vote);
-		var url = $scope.voteurl + "&ajax=1&fmt=json&rate="+vote;
+		var url = $scope.voteurl + "&_ajax=1&_fmt=json&rate="+vote;
 		GDORequestSrvc.send(url).then($scope.onVoted);
 	};
 	

@@ -4,7 +4,7 @@ $(function(){
 		var id = urlParam('id', this.href);
 		var gdo = urlParam('gdo', this.href).rsubstrFrom('\\');
 		$.ajax({
-			url: this.href+'&ajax=1&fmt=json',
+			url: this.href+'&_ajax=1&_fmt=json',
 			method: 'post',
 		}).then(function(result){
 			id = "." + gdo + "-" + id + "-likes";
