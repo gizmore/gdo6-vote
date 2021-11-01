@@ -17,12 +17,12 @@ final class Module_Vote extends GDO_Module
 	    {
     		if (module_enabled('Angular'))
     		{
-    			$this->addJavascript('js/gwf-vote-ctrl.js');
+    			$this->addJS('js/gwf-vote-ctrl.js');
     		}
 	    }
 	    elseif (module_enabled('JQuery'))
 		{
-			$this->addJavascript('js/gdo-vote.js');
+			$this->addJS('js/gdo-vote.js');
 		}
 		$this->addCSS('css/gwf-votes.css');
 	}
