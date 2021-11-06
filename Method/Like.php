@@ -20,12 +20,15 @@ use GDO\DB\GDT_Object;
 /**
  * The method to like an item.
  * @author gizmore
+ * @version 6.10.6
+ * @since 5.0.0
  */
 class Like extends Method
 {
     public function isCLI() { return false; }
     public function showInSitemap() { return false; }
-    
+    public function isUserRequired() { return true; }
+
 	public function gdoParameters()
 	{
 		return [

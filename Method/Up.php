@@ -20,12 +20,13 @@ use GDO\Vote\WithVotes;
  * Vote on an item.
  * Check for IP duplicates.
  * @author gizmore
- * @version 6.10.2
+ * @version 6.10.6
  * @since 5.0.0
  */
 final class Up extends Method
 {
     public function showInSitemap() { return false; }
+    public function isUserRequired() { return true; }
     
 	public function gdoParameters()
 	{
