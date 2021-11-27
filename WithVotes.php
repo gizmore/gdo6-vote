@@ -37,15 +37,15 @@ trait WithVotes
 	public function updateVotes()
 	{
 		$vars = [];
-		foreach ($this->gdoColumnsCache() as $gdoType)
+		foreach ($this->gdoColumnsCache() as $gdt)
 		{
-			if ($gdoType instanceof GDT_VoteCount)
+			if ($gdt instanceof GDT_VoteCount)
 			{
-				$vars[$gdoType->name] = $this->queryVoteCount();
+				$vars[$gdt->name] = $this->queryVoteCount();
 			}
-			elseif ($gdoType instanceof GDT_VoteRating)
+			elseif ($gdt instanceof GDT_VoteRating)
 			{
-				$vars[$gdoType->name] = $this->queryVoteRating();
+				$vars[$gdt->name] = $this->queryVoteRating();
 			}
 		}
 		return $this->saveVars($vars);
@@ -65,11 +65,11 @@ trait WithVotes
 	 */
 	public function getVoteCountColumn()
 	{
-		foreach ($this->gdoColumnsCache() as $gdoType)
+		foreach ($this->gdoColumnsCache() as $gdt)
 		{
-			if ($gdoType instanceof GDT_VoteCount)
+			if ($gdt instanceof GDT_VoteCount)
 			{
-				return $gdoType->gdo($this);
+				return $gdt->gdo($this);
 			}
 		}
 	}
@@ -106,11 +106,11 @@ trait WithVotes
 	 */
 	public function getVoteRatingColumn()
 	{
-		foreach ($this->gdoColumnsCache() as $gdoType)
+		foreach ($this->gdoColumnsCache() as $gdt)
 		{
-			if ($gdoType instanceof GDT_VoteRating)
+			if ($gdt instanceof GDT_VoteRating)
 			{
-				return $gdoType->gdo($this);
+				return $gdt->gdo($this);
 			}
 		}
 	}

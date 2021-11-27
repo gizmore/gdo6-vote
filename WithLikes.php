@@ -37,11 +37,11 @@ trait WithLikes
 	public function updateLikes()
 	{
 		$vars = [];
-		foreach ($this->gdoColumnsCache() as $gdoType)
+		foreach ($this->gdoColumnsCache() as $gdt)
 		{
-			if ($gdoType instanceof GDT_LikeCount)
+			if ($gdt instanceof GDT_LikeCount)
 			{
-				$vars[$gdoType->name] = $this->queryLikeCount();
+				$vars[$gdt->name] = $this->queryLikeCount();
 			}
 		}
 		return $this->saveVars($vars, false);
@@ -49,11 +49,11 @@ trait WithLikes
 	
 	public function getLikeCount()
 	{
-		foreach ($this->gdoColumnsCache() as $gdoType)
+		foreach ($this->gdoColumnsCache() as $gdt)
 		{
-			if ($gdoType instanceof GDT_LikeCount)
+			if ($gdt instanceof GDT_LikeCount)
 			{
-				return $this->getVar($gdoType->name);
+				return $this->getVar($gdt->name);
 			}
 		}
 		return $this->queryLikeCount();
